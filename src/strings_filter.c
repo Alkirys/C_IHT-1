@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <regex.h>
@@ -26,9 +27,9 @@ char** input_str_vec(char** str_vec, size_t* vec_len)
 {
     int iter = 0;
 
-    char* buf = (char*)malloc(sizeof(char));
+    char* buf = NULL;
     size_t buf_len = 1;
-    while (getline(&buf, &buf_len, stdin) != -1){
+    while (getline(&buf, &buf_len, stdin) != EOF){
 
         if (iter == *vec_len){
             char** temp = NULL;
@@ -42,7 +43,7 @@ char** input_str_vec(char** str_vec, size_t* vec_len)
             }
         }
 
-        str_vec[iter] = (char*)malloc(buf_len*sizeof(char));
+        str_vec[iter] = (char*)malloc(buf_len * sizeof(char));
         if (str_vec[iter] == NULL){
             printf("\n Error, memory is gone");
             return NULL;
@@ -51,7 +52,7 @@ char** input_str_vec(char** str_vec, size_t* vec_len)
         str_vec[iter] = memcpy(str_vec[iter], buf, buf_len);
 
         ++iter;
-        if (iter == 3)/////////////////////////////trhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+        if (iter == 3)
             break;
         buf_len = 1;
     }
@@ -66,7 +67,8 @@ char** input_str_vec(char** str_vec, size_t* vec_len)
 void print(char** vec, size_t len)
 {
     for (int i = 0; i < len; ++i){
-        printf("%s", vec[i]);
+        if (vec[i] != NULL)
+            printf("%s", vec[i]);
     }
 }
 
@@ -87,7 +89,6 @@ size_t strings_filter(char** str_vec, size_t vec_len, char*** res_str_vec)
     for (int i = 0; i < vec_len; ++i){
         size_t len = (int)strlen(str_vec[i]);
         if (regexec(&preg, str_vec[i], 0, &pm, 0) == 0){
-            // Heykskmgkwmgwm!!!!!ernklhhhhhhhnkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
             if (iter == res_vec_len){
                 char** temp = NULL;
                 temp = grow(*res_str_vec, &res_vec_len);
@@ -126,8 +127,10 @@ size_t strings_filter(char** str_vec, size_t vec_len, char*** res_str_vec)
 void del_vec(char** str_vec, size_t vec_len)
 {
     for(int i = 0; i < vec_len; ++i){
-        free(str_vec[i]);
+        if (str_vec[i] != NULL)
+            free(str_vec[i]);
     }
-    free(str_vec);
+    if (str_vec != NULL)
+        free(str_vec);
 }
 

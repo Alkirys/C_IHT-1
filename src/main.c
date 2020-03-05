@@ -7,10 +7,10 @@ int main() {
     char** res_str_vec = NULL;
 
     size_t vec_len = 2;
-    //str_vec = input_str_vec(str_vec, &vec_len);
-    //if (str_vec == NULL){
-    //return -2;
-    //}
+    str_vec = input_str_vec(str_vec, &vec_len);
+    if (str_vec == NULL){
+        return 0;
+    }
 
     str_vec = (char **) malloc(vec_len * sizeof(char *));
     str_vec[0] = (char*)malloc(13* sizeof(char));
