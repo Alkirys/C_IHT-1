@@ -51,4 +51,4 @@ script:
   - ctest --output-on-failure
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind ./C_IHT-1 ; fi
   - cd ..
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --std=c99 --enable=warning,style,performance,information ./src ./test ./include/; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --std=c99 --enable=warning,style,performance,information ./src ./test ./include; fi
