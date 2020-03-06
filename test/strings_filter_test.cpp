@@ -77,3 +77,33 @@ TEST(str5,str5)
     del_vec(test_res_str_vec, test_res_vec_len);
     del_vec(test_str_vec, test_vec_len);
 }
+
+TEST(str6,str6)
+{
+    char** test_str_vec = NULL;
+    char** test_res_str_vec = NULL;
+    size_t test_vec_len = 1;
+    size_t test_res_vec_len = 0;
+    test_str_vec = (char **) malloc(test_vec_len * sizeof(char *));
+    test_str_vec[0] = (char*)malloc(29* sizeof(char));
+    char* str = (char*)"dhveo http://foo.net/ eyfhie";
+    test_str_vec[0] = (char*)memcpy(test_str_vec[0], str, 29);
+    ASSERT_EQ(strings_filter(test_str_vec, test_vec_len ,&test_res_str_vec),1);
+    del_vec(test_res_str_vec, test_res_vec_len);
+    del_vec(test_str_vec, test_vec_len);
+}
+
+TEST(str7,str7)
+{
+    char** test_str_vec = NULL;
+    char** test_res_str_vec = NULL;
+    size_t test_vec_len = 1;
+    size_t test_res_vec_len = 0;
+    test_str_vec = (char **) malloc(test_vec_len * sizeof(char *));
+    test_str_vec[0] = (char*)malloc(44* sizeof(char));
+    char* str = (char*)"https://park.mail.ru/blog/topic/view/14270/";
+    test_str_vec[0] = (char*)memcpy(test_str_vec[0], str, 44);
+    ASSERT_EQ(strings_filter(test_str_vec, test_vec_len ,&test_res_str_vec),1);
+    del_vec(test_res_str_vec, test_res_vec_len);
+    del_vec(test_str_vec, test_vec_len);
+}
