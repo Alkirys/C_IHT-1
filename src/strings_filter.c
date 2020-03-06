@@ -45,6 +45,7 @@ char** input_str_vec(char** str_vec, size_t* vec_len)
 
         str_vec[iter] = (char*)malloc(buf_len * sizeof(char));
         if (str_vec[iter] == NULL){
+            free(buf);
             printf("\n Error, memory is gone");
             return NULL;
         }
@@ -64,11 +65,13 @@ char** input_str_vec(char** str_vec, size_t* vec_len)
     return str_vec;
 }
 
-void print(char** vec, size_t len)
+void print(const char** vec, size_t len)
 {
-    for (int i = 0; i < len; ++i){
-        if (vec[i] != NULL)
-            printf("%s", vec[i]);
+    if (vec != NULL) {
+        for (int i = 0; i < len; ++i) {
+            if (vec[i] != NULL)
+                printf("%s\n", vec[i]);
+        }
     }
 }
 
