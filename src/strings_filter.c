@@ -101,8 +101,10 @@ size_t strings_filter(char** str_vec, size_t vec_len, char*** res_str_vec)
                 }
             }
 
-            (*res_str_vec)[iter] = (char*)malloc((len + 1) * sizeof(char));
-            if ((*res_str_vec)[iter] != NULL){
+            char* temp = NULL;
+            temp = (char*)malloc((len + 1) * sizeof(char));
+            if (temp != NULL){
+                (*res_str_vec)[iter] = temp;
                 (*res_str_vec)[iter] = memcpy((*res_str_vec)[iter], str_vec[i], len + 1);
             }
             else{
