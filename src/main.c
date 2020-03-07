@@ -20,7 +20,7 @@ int main() {
 
     str_vec[1] = (char*)malloc(8* sizeof(char));
     str = "mail.ru";
-    str_vec[1] = memcpy(str_vec[0], str, 8);
+    str_vec[1] = memcpy(str_vec[1], str, 8);
 
 
     size_t res_vec_len = strings_filter(str_vec, vec_len, &res_str_vec);

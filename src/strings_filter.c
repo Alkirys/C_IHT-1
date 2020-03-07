@@ -124,7 +124,7 @@ size_t strings_filter(char** str_vec, size_t vec_len, char*** res_str_vec)
 
     regfree(&preg);
 
-    print(*res_str_vec, res_vec_len);
+    print((const char **)(*res_str_vec), res_vec_len);
 
     return res_vec_len;
 }
